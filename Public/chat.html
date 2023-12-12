@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link  type = "text/css" rel="stylesheet" href="./style.css"> -->
+
+    <title> Chat App </title>
+</head>
+<body>
+    <div class="chats">
+    <h2> Chats </h2>
+ <ol id="message"> </ol>
+ <ol id="users"> </ol>
+
+    
+   <div class='single-chat'>
+    <form id="message-form">
+        <input type="text"  name="message" placeholder="Message">
+        <button id="message-btn" type="submit"> Send</button>
+        <button id="location-btn" type="submit"> Send Location</button>
+    </form>
+    
+    </div>
+    <script id="location-template-msg" type="text/template">
+        <li> 
+            <div class="message">
+                <h4> {{from}}</h4> 
+                <p> {{createdAt}}  </p>
+                <a href="{{url}}"> My current location </a>
+            </div>
+        </li>
+    </script>
+    <script id="template-msg" type="text/template">
+        <li> 
+            <div class="message">
+                <h4> {{from}}</h4> 
+                <p> {{createdAt}}  </p>
+                <p> {{text}} </p>
+            </div>
+        </li>
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script> <!-- this script allows to make connection to the backend which could accept ths conn -->
+    <script type="text/javascript" src="./js/chat.js"> </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"> </script>
+
+
+</body>
+</html>
