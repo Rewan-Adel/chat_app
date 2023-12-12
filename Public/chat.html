@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link  type = "text/css" rel="stylesheet" href="./style.css"> -->
+    <link  type = "text/css" rel="stylesheet" href="./style.css">
 
     <title> Chat App </title>
 </head>
 <body>
-    <div class="chats">
-    <h2> Chats </h2>
- <ol id="message"> </ol>
- <ol id="users"> </ol>
-
+   
+    <div class="sidebar">
+        <h3> Users </h3>
+        <ul></ul>
+        <ol id="users"> </ol>
+    </div>
     
    <div class='single-chat'>
+    <div class="chats">
+        <h3> <script>
+            let room = location.search.split('room=')[1];
+            document.write(room);
+        </script> </h3>
+        <ol id="message"> </ol>
+      </div>
     <form id="message-form">
         <input type="text"  name="message" placeholder="Message">
         <button id="message-btn" type="submit"> Send</button>
@@ -26,16 +34,17 @@
         <li> 
             <div class="message">
                 <h4> {{from}}</h4> 
-                <p> {{createdAt}}  </p>
-                <a href="{{url}}"> My current location </a>
+                <span> {{createdAt}}  </span>
+                <p><a href="{{url}}"> My current location </a><p>
             </div>
         </li>
     </script>
     <script id="template-msg" type="text/template">
         <li> 
             <div class="message">
+                
                 <h4> {{from}}</h4> 
-                <p> {{createdAt}}  </p>
+                <span> {{createdAt}}  </span>
                 <p> {{text}} </p>
             </div>
         </li>

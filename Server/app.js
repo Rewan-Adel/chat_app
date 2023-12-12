@@ -17,8 +17,8 @@ app.use(express.static(publicPath));
 
 let {User} = require('./Utils/Users.js'); 
 let user = new User();
-//this will listen to eny event from the client side
 
+//this will listen to eny event from the client side
 io.on('connection', (socket)=>{
     console.log('New user connected');
     
@@ -30,9 +30,9 @@ io.on('connection', (socket)=>{
         user.addUser(socket.id, params.user, params.room); 
 
         io.to(params.room).emit('updateUserList', user.getUserList(params.room));
-       
-        socket.emit('newMsg', generateMsg( 'admin', `Welcome to the ${params.room}!`));
-        socket.broadcast.emit('newMsg', generateMsg('admin', 'New User Joined'));
+        io.emit(params.room)
+        io.to(params.room).emit('newMsg', generateMsg( '', `Welcome to  ${params.room}!`));
+        socket.broadcast.to(params.room).emit('newMsg', generateMsg('', `${params.user} has joined`));
     
         callback();
     })
@@ -55,7 +55,6 @@ io.on('connection', (socket)=>{
           }  
     })
 
-    
 })
 
 mongoose.connect('mongodb://127.0.0.1:27017/chatApp')

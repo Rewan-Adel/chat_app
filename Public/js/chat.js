@@ -1,5 +1,10 @@
 //this script connect to the server and listens for events
 let socket = io(); // this is the connection to the backend
+
+function scrollToBottom(){
+    let messages = document.querySelector("#message").lastElementChild;
+    messages.scrollIntoView();
+}
 //using function instead of arrow function because it is supported in all browsers
    
 socket.on('connect', function(){
@@ -19,11 +24,6 @@ socket.on('connect', function(){
     console.log(params);
 });
 
-
-function scrollToBottom(){
-    let messages = document.querySelector("#message").lastElementChild;
-    messages.scrollIntoView();
-}
 
 //listing message from server side
 socket.on('newMsg', function(message){
