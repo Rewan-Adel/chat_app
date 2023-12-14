@@ -23,6 +23,7 @@ io.on('connection', (socket)=>{
     console.log('New user connected');
     
     socket.on('join', (params, callback)=>{
+        console.log(params)
         if(!validString(params.user) || !validString(params.room)){
             return callback('User name and room name are required');
         }
