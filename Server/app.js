@@ -22,7 +22,7 @@ let user = new User();
 io.on('connection', (socket)=>{
     console.log('New user connected');
     
-    socket.on('join', (params, callback)=>{
+    socket.on('join', (params)=>{
         console.log(params)
         if(!validString(params.user) || !validString(params.room)){
             return callback('User name and room name are required');
@@ -35,7 +35,6 @@ io.on('connection', (socket)=>{
         io.to(params.room).emit('newMsg', generateMsg( '', `Welcome to  ${params.room}!`));
         socket.broadcast.to(params.room).emit('newMsg', generateMsg('', `${params.user} has joined`));
     
-        callback();
     })
 
     socket.on('createMessage', (message)=>{
